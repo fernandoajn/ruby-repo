@@ -1,27 +1,35 @@
-puts "Hello user!"
-puts "What is your name? \n"
-name = "Fernando"
+puts "Welcome to the Guessing Game!"
+puts "\n"
+puts "What is your name?"
+name = gets
 puts "\n"
 
-puts "We are going to start the game for you, " + name
+puts "We are going to start the game, " + name
 secret_number = 175
 puts "We selected a secret number. Why don't you try to guess what was it?"
 puts "\n\n"
 
-puts "Choose a number between 0 and 200."
-puts "First attempt:"
-attempt = gets
-puts "Your try: " + attempt
-puts attempt.to_i == secret_number
+tries_limit = 3
+tentativa = 1
 
-puts "\n"
-puts "Second attempt:"
-attempt = gets
-puts "Your try: " + attempt
-puts attempt.to_i == secret_number
+for count in 1..tries_limit
+  puts "Choose a number between " + count.to_s + " and " + tries_limit.to_s
+  puts count.to_s + " attempt:"
+  attempt = gets
 
-puts "\n"
-puts "Last attempt:"
-attempt = gets
-puts "Your try: " + attempt
-puts attempt.to_i == secret_number
+  hit_number = attempt.to_i == secret_number
+
+  if hit_number
+    puts "Gotcha!"
+    break
+  else 
+    higher = attempt.to_i < secret_number
+    if higher
+      puts "Try a higher number"
+    else 
+      puts "Try a lower number"
+    end
+  end
+
+  puts "\n"
+end
