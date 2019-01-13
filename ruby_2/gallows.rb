@@ -1,7 +1,7 @@
 require_relative 'ui'
 
-def ask_valid_attempt attempts, errors
-  attempts_header attempts, errors
+def ask_valid_attempt attempts, errors, mask
+  attempts_header attempts, errors, mask
   loop do
     attempt = ask_attempt
 
@@ -14,6 +14,18 @@ def ask_valid_attempt attempts, errors
   end
 end
 
+def masked_word attempts, secret_word
+  mask = ""
+  for letter in secret_word.chars
+    if attempts.include? letter
+      mask += letter
+    else
+      mask += "_"
+    end
+  end
+  mask
+end
+
 def play(name) 
   secret_word = raffle_secret_word
 
@@ -22,7 +34,8 @@ def play(name)
   score = 0
 
   while errors < 5
-    attempt = ask_valid_attempt attempts, errors
+    mask = masked_word attempts, secret_word
+    attempt = ask_valid_attempt attempts, errors, mask
     
     attempts << attempt
 

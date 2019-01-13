@@ -33,7 +33,7 @@ end
 
 def raffle_secret_word
   puts "We are choosing a word..."
-  secret_word = "programmer"
+  secret_word = "psycopath"
   puts "We choose a word with #{secret_word.size} caracteres, good luck!"
   secret_word
 end
@@ -45,8 +45,9 @@ def play_again?
   answer.upcase == "N"
 end
 
-def attempts_header attempts, errors
+def attempts_header attempts, errors, mask
   puts "\n\n\n"
+  puts "Secret word #{mask}" 
   puts "Errors until now: #{errors}"
   puts "Attempts until now: #{attempts}"
 end
