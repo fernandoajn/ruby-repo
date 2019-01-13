@@ -13,9 +13,13 @@ def random_secret_number
   raffled
 end
 
-def ask_a_number(count, tries_limit)
-  puts "Choose a number between " + count.to_s + " and " + tries_limit.to_s
-  puts count.to_s + " attempt:"
+def ask_a_number(attempts, count, tries_limit)
+  puts "Choose a number between 1 and 200"
+  puts "\n"
+  puts "Attempt #{count} of #{tries_limit}"
+  puts "Attempts until now: #{attempts}"
+  puts "\n"
+  puts "#{count} attempt:"
   attempt = gets
   attempt.to_i
 end
@@ -25,14 +29,17 @@ def verify(attempt, secret_number)
 
   if hit_number
     puts "Gotcha!"
+    puts "\n"
     return true
   end
 
     higher = attempt < secret_number
     if higher
       puts "Try a higher number"
+      puts "\n"
     else 
       puts "Try a lower number"
+      puts "\n"
     end
     false
 end
@@ -41,8 +48,12 @@ welcome()
 secret_number = random_secret_number()
 
 tries_limit = 3
+attempts = []
 
 for count in 1..tries_limit
-  attempt = ask_a_number(count, tries_limit)
+  attempt = ask_a_number(attempts ,count, tries_limit)
+
+  attempts << attempt
+
   break if verify(attempt, secret_number)
 end
