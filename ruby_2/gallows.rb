@@ -1,4 +1,5 @@
 require_relative 'ui'
+require_relative 'rank'
 
 def ask_valid_attempt attempts, errors, mask
   attempts_header attempts, errors, mask
@@ -12,6 +13,15 @@ def ask_valid_attempt attempts, errors, mask
     end
 
   end
+end
+
+def raffle_secret_word
+  warning_choosing_word
+  file_text = File.read('champions.txt')
+  all_champions = file_text.split("\n") 
+  random_number = rand(all_champions.size)
+  secret_word = all_champions[random_number].upcase
+  warning_word_choosed secret_word
 end
 
 def masked_word attempts, secret_word
@@ -65,14 +75,24 @@ def play(name)
     end
   end
 
-  warning_total_points score
+  warning_scored_points score
+  score
 end
 
 def gallows_game
   name = welcome
+  total_score = 0
+
+  warning_actual_champion read_rank
 
   loop do 
-    play name
+    total_score += play name
+    warning_total_points total_score
+
+    if read_rank[1].to_i < total_score
+      save_rank name, total_score
+    end
+
     break if play_again?
   end
 end
