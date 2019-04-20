@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   # get "[o nome que queremos para a URL]" => "[nome do Controller]#[nome da página]"
   get "produtos" => "produtos#index"
   get "usuarios" => "usuarios#index"
+  root "produtos#index"
 end
