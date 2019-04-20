@@ -20,8 +20,29 @@
     </thead>
 
     <tbody>
-      <% todos = Produto.all %>
-      <% todos.each do |produto| %>
+      <% @produtos_por_nome.each do |produto| %>
+      <tr>
+        <td><%= produto.nome %></td>
+        <td><%= produto.descricao %></td>
+        <td><%= produto.preco %></td>
+        <td><%= produto.quantidade %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Produto</th>
+        <th>Descricao</th>
+        <th>Preco</th>
+        <th>Quantidade</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @produtos_por_preco.each do |produto| %>
       <tr>
         <td><%= produto.nome %></td>
         <td><%= produto.descricao %></td>
