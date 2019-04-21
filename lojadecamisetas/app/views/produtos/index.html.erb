@@ -5,6 +5,7 @@
         <th>Descricao</th>
         <th>Preco</th>
         <th>Quantidade</th>
+        <th></th>
       </tr>
     </thead>
 
@@ -15,6 +16,7 @@
         <td><%= produto.descricao %></td>
         <td><%= produto.preco %></td>
         <td><%= produto.quantidade %></td>
+        <td><%= link_to "Remover", produto, method: :delete, class: "btn btn-danger", data: { confirm:"Tem certeza que deseja remover #{produto.nome}?"} %></td>
       </tr>
       <% end %>
     </tbody>
@@ -42,5 +44,5 @@
     </tbody>
   </table>
 
-  <a href="/produtos/new" class="btn btn-danger">Criar produto</a>
+  <%= link_to "Criar novo produto", new_produto_path, class: "btn btn-success" %>
   <a class="btn btn-primary" href="/usuarios">Ver usuarios</a>
